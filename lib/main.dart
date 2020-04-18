@@ -80,24 +80,28 @@ class DataSearch extends SearchDelegate<String> {
   //   String content = await rootBundle.loadString('assets/journals.json');
   //   return json.decode(content);
   // }  I'VE TRIED SINCE METHOD TO ACTIVATE THE JOURNALLIST FROM THE FILE ZOURNAL.DART, BUT IT DOES NOT,
+  
+  List<JournalList> journals;
+
+  DataSearch(this.journals);
 
 //Below r some simple tests I tried, but the search icon is not working
-  final journals = [
-    'Nature Reviews Materials',
-    'New England Journal Of Medicine',
-    'Lancet',
-    'Chemical Reviews',
-    'Science',
-    'Cell',
-    'World Psychiatr',
-    'Annual Review Of Astronomy And Astrophysics',
-    'Journal Of Clinical Oncology',
-    'Cancer Communications',
-    'Advanced Materials',
-    'Pharmacological Review',
-    'Blood',
-    'Endocrine Reviews',
-  ];
+//   final journals = [
+//     'Nature Reviews Materials',
+//     'New England Journal Of Medicine',
+//     'Lancet',
+//     'Chemical Reviews',
+//     'Science',
+//     'Cell',
+//     'World Psychiatr',
+//     'Annual Review Of Astronomy And Astrophysics',
+//     'Journal Of Clinical Oncology',
+//     'Cancer Communications',
+//     'Advanced Materials',
+//     'Pharmacological Review',
+//     'Blood',
+//     'Endocrine Reviews',
+//   ];
 
   final recentJournals = [
     'World Psychiatr',
@@ -139,7 +143,9 @@ class DataSearch extends SearchDelegate<String> {
   Widget buildSuggestions(BuildContext context) {
     final suggestionList = query.isEmpty
         ? recentJournals
-        : journals.where((p) => p.startsWith(query)).toList();
+        : journals.where((p) {
+            return p.name.toLowerCase().startsWith(query.toLowerCase());
+          }).toList();
     return ListView.builder(
       itemBuilder: (context, index) => ListTile(
         leading: Icon(Icons.location_city),
