@@ -35,7 +35,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
+      home: Builder(builder: (context) => Scaffold(
         appBar: AppBar(
           title: Text('List Appp'),
           actions: <Widget>[
@@ -69,7 +69,7 @@ class _MyAppState extends State<MyApp> {
             },
           ),
         ),
-      ),
+      ),)
     );
   }
 }
